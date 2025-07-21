@@ -4,58 +4,28 @@
  */
 package cl.duoc.drivequest.models.vehiculos;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
- *
- * @author Home
- */ 
-public abstract class Vehiculos {     
-    private LocalDate fechaCreacion;    
-    private int dias; 
-    private int carga; 
-    private int numPasajeros;
+ * 
+ * @author Home   
+ */  
+public abstract class Vehiculos implements Interfaz {     
+    protected int dias;   
+    protected int total;    
 
-    public Vehiculos(LocalDate fechaCreacion, int dias, int carga, int numPasajeros) {
-        this.fechaCreacion = fechaCreacion;
-        this.dias = dias;
-        this.carga = carga;
-        this.numPasajeros = numPasajeros;
-    }
-    
-    public LocalDate getFechaCreacion() {
-        return fechaCreacion;
-    }
+    public Vehiculos(int dias, int total) { 
+        this.dias = dias;  
+        this.total = total;
+    }     
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion; 
-    }
-
-    public int getDias() {
-        return dias;
-    }
-
-    public void setDias(int dias) {
-        this.dias = dias;
-    }
-
-    public int getCarga() {
-        return carga;
-    }
-
-    public void setCarga(int carga) {
-        this.carga = carga;
-    }
-
-    public int getNumPasajeros() {
-        return numPasajeros;
-    }
-
-    public void setNumPasajeros(int numPasajeros) {
-        this.numPasajeros = numPasajeros;
-    }
-    
     public abstract void Arriendo();  
-   
+    
+    @Override
+    public void Descuentos(){   
+        System.out.println("Descuento pasajeros: " + 20000 * 0.7);
+        System.out.println("Descuento carga: " + 50000 * 0.12);   
+    }
 
 } 
+ 
