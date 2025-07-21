@@ -17,28 +17,37 @@ import java.util.List;
  * 
  * @author Home  
  */ 
-public class GestionVehiculos {
+public class GestionVehiculos { 
     private String indice;
     private String patente;
 
     public GestionVehiculos(String indice, String patente) {
         this.indice = indice; 
         this.patente = patente;
-    }
-
+    } 
+ 
     public String getIndice() {
         return indice;
     }
 
     public String getPatente() {
-        return patente; 
-    }
+        return patente;   
+    } 
+     
+    public static boolean VerificarPatente(String patente) {      
+        try { 
+            List<GestionVehiculos> lista = GestionVehiculos.cargarDesdeCSV(); 
+            System.out.println(""); 
+            System.out.println("Codigos leídos desde CSV:");
+        
+            for (GestionVehiculos lista2 : lista) { 
+            System.out.println(lista2.getIndice() + ": " + lista2.getPatente());
+            if (lista2.getPatente().equalsIgnoreCase(patente)) {
+                System.out.println("Patente encontrada: " + patente);
+                return true;   
+            }
+        }
  
-    public static boolean VerificarPatente() {  
-        try {
-            // revisar input en lista de GestionVehiculos
-            cargarDesdeCSV(); 
-                     
         } catch (Exception e) {
             System.out.println("Error de verificacion: " + e.getMessage());
             return false; 
@@ -46,9 +55,7 @@ public class GestionVehiculos {
         return true;   
     } 
      
-    //Duracion arriendo = o mas de 7 dias 
-     
-     public static List<GestionVehiculos> cargarDesdeCSV() {  
+    public static List<GestionVehiculos> cargarDesdeCSV() {  
         List<GestionVehiculos> lista = new ArrayList<>();
         try (
             FileReader reader = new FileReader("patentes.csv"); 
@@ -64,11 +71,11 @@ public class GestionVehiculos {
                 String patente = nextLine[1];
 
                 GestionVehiculos listaNueva = new GestionVehiculos(indice, patente); 
-                lista.add(listaNueva); 
+                lista.add(listaNueva);  
             }
         } catch (Exception e) {
             System.out.println("Error de lectura: " + e.getMessage());
-        }
+        } 
         return lista;
     } 
 
