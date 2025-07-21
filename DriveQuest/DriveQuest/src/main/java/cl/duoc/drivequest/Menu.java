@@ -21,6 +21,12 @@ public class Menu {
     private Scanner sc = new Scanner(System.in);
     private String patente;
     private List<GestionVehiculos> lista = new ArrayList<>();
+    private int contador; 
+
+    public Menu(String patente, int contador) {
+        this.patente = patente;
+        this.contador = contador;
+    }
 
     public Menu(String patente) {  
         this.patente = patente;
@@ -79,18 +85,34 @@ public class Menu {
         } while (option != 9);  
     }   
      
-    public void VerificarDatos(String patente) {   
+    public void VerificarDatos(String patente) {     
         System.out.println("Ingrese patente");
         patente = sc.nextLine(); 
         GestionVehiculos.VerificarPatente(patente); 
     }
     
     public void ArrendarVehiculos(Scanner sc) {   
-            
+        System.out.println("Ingrese patente");
+        VerificarDatos(patente);
+        
+        
+        System.out.println(this.contador);
     }
      
     public void AgregarVehiculos(Scanner sc) {
         VerificarDatos(patente);
+        
+        List<GestionVehiculos> lista = GestionVehiculos.cargarDesdeCSV();
+
+        System.out.print("Ingrese patente nueva: ");
+        String patente = sc.nextLine();
+        
+        GestionVehiculos nuevoVehiculo = new GestionVehiculos(indice, patente);
+
+        lista.add(nuevoVehiculo);
+        GestionVehiculos.guardarEnCSV(lista);
+
+        System.out.println("Vehículo agregado correctamente.");
          
     }
     
@@ -104,8 +126,9 @@ public class Menu {
         }
     }
     
-    public void CantidadArriendos() {
-        
+    public void CantidadArriendos() { 
+        System.out.println("Numero de arriendos"); 
+        contador += 1; 
     }
           
     public void Boleta() {

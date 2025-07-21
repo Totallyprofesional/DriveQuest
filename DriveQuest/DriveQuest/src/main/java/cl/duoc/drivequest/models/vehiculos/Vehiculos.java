@@ -24,7 +24,8 @@ public abstract class Vehiculos {
     public static void Descuentos(){   
         System.out.println("Descuento pasajeros: " + 20000 * 0.7);
         System.out.println("Descuento carga: " + 50000 * 0.12);   
-    }
-
+    } 
+    
+        
 } 
  
